@@ -1,0 +1,23 @@
+name: dingding_webhook
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Await CF Pages and send Slack notification
+        id: cf-pages
+        uses: buyfakett/cloudflare-pages-dingding-webhook@v3
+        with:
+          # Uncomment these two lines if you wish to use the Global API Key (Not recommended!)
+          # accountEmail: ${{ secrets.CF_ACCOUNT_EMAIL  }}
+          # apiKey: ${{ secrets.CF_API_KEY  }}
+
+          # Use an API token (Recommended!)
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACC_ID  }}
+          # CloudFlare Pages project name
+          project: ${{ secrets.CF_PAGES_PROJECT  }}
+          dingWebHookKey: ${{ secrets.DING_WEBHOOK_KEY }}
+          # Add this if you want GitHub Deployments (see below)
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
