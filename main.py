@@ -22,7 +22,7 @@ def generate_headers():
             f.write("\n")
 
 if __name__ == '__main__':
-    pictures = generate_url_json('picture_list.txt')
+    pictures = generate_url_json('picture_list.json')
     # 确保目标目录存在
     os.makedirs("dist", exist_ok=True)
     with open('dist/pictures', 'w', encoding='utf-8') as file:
